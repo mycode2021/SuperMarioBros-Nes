@@ -1,6 +1,6 @@
 # Description
 
-This is a Super Mario environment for openai retro.
+This is a Super Mario environment for openAI's retro.
 
 # Environment
 
