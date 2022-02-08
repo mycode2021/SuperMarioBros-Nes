@@ -74,21 +74,19 @@ class MarioWinner(gym.Wrapper):
     def __init__(self, env):
         super(MarioWinner, self).__init__(env)
         self.actions = deque(maxlen=300)
-        self.time, self.levelLo, self.levelHi, self.lives, self.finish = 0, 0, 0, 0, None
+        self.levelLo, self.levelHi, self.lives, self.finish = 0, 0, 0, None
 
     def step(self, action):
         state, reward, done, info = self.env.step(action)
         self.actions.append(action)
         if self.finish == None:
-            self.time, self.lives, self.levelLo, self.levelHi = \
-                info["time"], info["lives"], info["levelLo"], info["levelHi"]
+            self.lives, self.levelLo, self.levelHi = info["lives"], info["levelLo"], info["levelHi"]
             self.finish = lambda levelLo, levelHi: levelLo != self.levelLo or levelHi != self.levelHi
         self.lives = max(self.lives, info["lives"])
         info["finish"] = self.finish(info["levelLo"], info["levelHi"])
         done |= self.actions.count(action) == self.actions.maxlen \
             or info["finish"] or info["lives"] < self.lives
         if done:
-            info["time"] = self.time - info["time"]
             if info["finish"]:
                 reward += 1000
             else:
@@ -97,7 +95,7 @@ class MarioWinner(gym.Wrapper):
 
     def reset(self, **kwargs):
         self.actions.clear()
-        self.time, self.levelLo, self.levelHi, self.lives, self.finish = 0, 0, 0, 0, None
+        self.levelLo, self.levelHi, self.lives, self.finish = 0, 0, 0, None
         return self.env.reset(**kwargs)
 
 
