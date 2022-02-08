@@ -2,7 +2,7 @@ English | [简体中文](./README.cn.md)
 
 # Description
 
-This is a Super Mario Bros environment for openAI's retro.
+This is a Super Mario Bros environment for openAI's retro, This project is used to expand the official native environment.
 
 # Environment
 
