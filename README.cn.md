@@ -8,7 +8,7 @@
 
 ## 1. 系统依赖库
 
-你需要使用openAI的gym-retro-integration工具提取rom文件和sha文件并与Contra-Nes目录合并成一个完整的环境。
+你需要使用openAI的gym-retro-integration工具提取rom文件和sha文件并与SuperMarioBros-Nes目录合并成一个完整的环境。
 ```bash
 mv "python's library directory"/site-packages/retro/data/stable/SuperMarioBros-Nes \
   "python's library directory"/site-packages/retro/data/stable/SuperMarioBros-Nes.bak
